@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stepping_stones/models/patients.dart';
+import 'package:stepping_stones/screens/home_page.dart';
+import 'package:stepping_stones/screens/patient_details.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Patient> patientList;
@@ -192,7 +194,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     trailing: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PatientDetailScreen(
+                                                    patient: patient,
+                                                  )),
+                                        );
+                                      },
                                       child: Text(
                                         'View',
                                         style: TextStyle(
