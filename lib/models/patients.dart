@@ -65,20 +65,4 @@ var patientList = [
       hospital: 'Johns Hopkins Hospital',
       notes:
           'Patient is on iron supplements, progress towards normal levels needs to be tracked.'),
-  Patient(
-      patientImage: 'assets/images/patient7.jpg',
-      fname: 'Sophia',
-      lname: 'Garcia',
-      disease: 'Thyroid issues',
-      hospital: 'Massachusetts General Hospital',
-      notes:
-          'Thyroid hormone levels must be regularly checked and medications adjusted accordingly.'),
-  Patient(
-      patientImage: 'assets/images/patient8.jpg',
-      fname: 'Isabella',
-      lname: 'Martinez',
-      disease: 'Arthritis',
-      hospital: 'UCSF Medical Center',
-      notes:
-          'Joint inflammation management and pain relief are the primary concerns.'),
 ];
