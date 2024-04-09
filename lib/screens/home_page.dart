@@ -5,9 +5,8 @@ import 'package:stepping_stones/screens/home_screen.dart';
 import 'package:stepping_stones/screens/notification_page.dart';
 import 'package:stepping_stones/screens/user_drawer.dart';
 import 'package:stepping_stones/widgets/bottom_navbar.dart';
-
 import 'package:flutter/material.dart';
-// ... Other imports ...
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -18,31 +17,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Scaffold key
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
   void _onItemTapped(int index) {
     if (index == 3) {
-      _scaffoldKey.currentState?.openEndDrawer(); // Open end drawer
+      _scaffoldKey.currentState?.openEndDrawer(); 
     } else {
       setState(() {
-        _selectedIndex = index; // Switch between pages
+        _selectedIndex = index; 
       });
     }
   }
 
-  // Pages for the IndexedStack
   final List<Widget> _pages = [
-    HomeScreen(patientList: patientList), // Placeholder for HomeScreen page
-    CalendarPage(), // Placeholder for Calendar page
-    NotificationsPage(), // Placeholder for Notifications page
-    // Do not place SideMenu here
+    HomeScreen(patientList: patientList),
+    CalendarPage(), 
+    NotificationsPage(), 
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: SideMenu(), // Your custom drawer here, now as an endDrawer
+      endDrawer: SideMenu(), 
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,

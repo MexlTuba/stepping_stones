@@ -60,7 +60,7 @@ class SideMenu extends StatelessWidget {
             accountEmail: Text('Chief Heart Hospital'),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.grey,
-              child: Text('J'), // Placeholder for profile image
+              child: Text('J'), 
             ),
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -70,8 +70,7 @@ class SideMenu extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+            
               Navigator.pop(context);
             },
           ),
@@ -79,8 +78,7 @@ class SideMenu extends StatelessWidget {
             leading: Icon(Icons.info_outline),
             title: Text('About'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+             
               Navigator.pop(context);
             },
           ),

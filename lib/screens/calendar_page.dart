@@ -64,75 +64,67 @@ class _CalendarPageState extends State<CalendarPage> {
       ),
     );
   }
+  
+  
 
   void _showAddEventDialog() async {
-    final newEvent = await showDialog(
+ 
+  _selectedDateTime ??= DateTime.now();
+  _eventTitleController.clear(); 
+
+  final TimeOfDay? pickedTime = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.fromDateTime(_selectedDateTime!),
+  );
+
+  if (pickedTime != null) {
+   
+    _selectedDateTime = DateTime(
+      _selectedDateTime!.year,
+      _selectedDateTime!.month,
+      _selectedDateTime!.day,
+      pickedTime.hour,
+      pickedTime.minute,
+    );
+
+    final newEvent = await showDialog<Appointment>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.white, 
-        title: Text('Add Event',
-            style: TextStyle(
-                color: const Color(0xFF404345))), 
+        backgroundColor: Colors.white,
+        title: Text('Add Event', style: TextStyle(color: const Color(0xFF404345))),
         content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: _eventTitleController,
-                decoration: InputDecoration(
-                  labelText: 'Event Title',
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: const Color(
-                            0xFF3DCCC7)), 
-                  ),
-                  labelStyle: TextStyle(
-                      color: const Color(0xFF404345)), 
-                ),
-                cursorColor: const Color(0xFF3DCCC7), 
-                style:
-                    TextStyle(color: const Color(0xFF404345)), 
+          child: TextField(
+            controller: _eventTitleController,
+            decoration: InputDecoration(
+              labelText: 'Event Title',
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: const Color(0xFF3DCCC7)),
               ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: _pickDateTime,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      const Color(0xFF3DCCC7), 
-                ),
-                child: Text(
-                  'Pick Date and Time',
-                  style: TextStyle(
-                      color: Colors.white), 
-                ),
-              ),
-            ],
+              labelStyle: TextStyle(color: const Color(0xFF404345)),
+            ),
+            cursorColor: const Color(0xFF3DCCC7),
+            style: TextStyle(color: const Color(0xFF404345)),
           ),
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(null);
-            },
-            child: Text('Cancel',
-                style: TextStyle(
-                    color: const Color(0xFF404345))), 
+            onPressed: () => Navigator.of(context).pop(null),
+            child: Text('Cancel', style: TextStyle(color: const Color(0xFF404345))),
           ),
           ElevatedButton(
             onPressed: () {
-              final newAppointment = Appointment(
-                startTime: _selectedDateTime!,
-                endTime: _selectedDateTime!.add(Duration(hours: 1)),
-                subject: _eventTitleController.text,
-              );
-              Navigator.of(context).pop(newAppointment);
+          
+              if (_eventTitleController.text.isNotEmpty) {
+                final Appointment newAppointment = Appointment(
+                  startTime: _selectedDateTime!,
+                  endTime: _selectedDateTime!.add(Duration(hours: 1)),
+                  subject: _eventTitleController.text,
+                );
+                Navigator.of(context).pop(newAppointment);
+              }
             },
-            child: Text('Save',
-                style: TextStyle(color: Colors.white)), 
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color(0xFF3DCCC7), 
-            ),
+            child: Text('Save', style: TextStyle(color: Colors.white)),
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF3DCCC7)),
           ),
         ],
       ),
@@ -141,9 +133,13 @@ class _CalendarPageState extends State<CalendarPage> {
     if (newEvent != null) {
       setState(() {
         _appointments.add(newEvent);
+  
+        _selectedDateTime = null;
       });
     }
   }
+}
+
 
   void _pickDateTime() async {
     final pickedDateTime = await showDatePicker(

@@ -54,7 +54,7 @@ class BottomNavBar extends StatelessWidget {
           height: 75,
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            elevation: 0, // Adjust the elevation here
+            elevation: 0, 
             backgroundColor: AppStyles.colorScheme.primary,
             items: navBarIcons,
             currentIndex: selectedIndex,
