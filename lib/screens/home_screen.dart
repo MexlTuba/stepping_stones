@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stepping_stones/models/patients.dart';
+import 'dart:async';
 
 class HomeScreen extends StatefulWidget {
   final List<Patient> patientList;
@@ -13,45 +14,72 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // State variables
+   int _selectedIndex = 1;
   List<Patient> _filteredPatients = [];
   String _searchText = "";
+  final PageController _pageController = PageController();
+  late Timer _timer;
+
+  final List<String> _imageList = [
+    'assets/images/backgroundImg.png',
+    'assets/images/backgroundImg2.jpg',
+    'assets/images/backgroundImg3.jpg',
+    'assets/images/backgroundImg4.jpg',
+  ];
 
   @override
   void initState() {
     super.initState();
     _filteredPatients = widget.patientList;
-  }
 
-  void _updateSearchResults(String text) {
-    setState(() {
-      _searchText = text;
-      if (text.isEmpty) {
-        _filteredPatients = widget.patientList;
-      } else {
-        _filteredPatients = widget.patientList
-            .where((patient) =>
-                patient.fname.toLowerCase().contains(text.toLowerCase()) ||
-                patient.lname.toLowerCase().contains(text.toLowerCase()))
-            .toList();
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      if (_pageController.hasClients) {
+        int nextPage = _pageController.page!.toInt() + 1;
+        if (nextPage >= _imageList.length) {
+          nextPage = 0; // Loop back to first image.
+        }
+        _pageController.animateToPage(
+          nextPage,
+          duration: Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+        );
       }
     });
   }
 
   @override
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _updateSearchResults(String text) {
+    setState(() {
+      _searchText = text;
+      _filteredPatients = text.isEmpty
+          ? widget.patientList
+          : widget.patientList
+              .where((patient) =>
+                  patient.fname.toLowerCase().contains(text.toLowerCase()) ||
+                  patient.lname.toLowerCase().contains(text.toLowerCase()))
+              .toList();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Image.asset(
-              'assets/images/backgroundImg.png',
-              width: screenWidth,
+          PageView.builder(
+            controller: _pageController,
+            itemCount: _imageList.length,
+            itemBuilder: (context, index) => Image.asset(
+              _imageList[index],
               fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
             ),
           ),
           Column(

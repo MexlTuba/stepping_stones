@@ -59,8 +59,8 @@ class SideMenu extends StatelessWidget {
             accountName: Text('PT. Josephine'),
             accountEmail: Text('Chief Heart Hospital'),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.grey,
-              child: Text('J'), 
+              // Update this part
+              backgroundImage: AssetImage('assets/images/doc1.png'), 
             ),
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -70,7 +70,7 @@ class SideMenu extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-            
+              // Logic to navigate to Settings Page
               Navigator.pop(context);
             },
           ),
@@ -78,7 +78,7 @@ class SideMenu extends StatelessWidget {
             leading: Icon(Icons.info_outline),
             title: Text('About'),
             onTap: () {
-             
+              // Logic to navigate to About Page
               Navigator.pop(context);
             },
           ),
@@ -87,3 +87,4 @@ class SideMenu extends StatelessWidget {
     );
   }
 }
+
