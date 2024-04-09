@@ -169,30 +169,23 @@ class _CalendarPageState extends State<CalendarPage> {
     }
   }
 
-  void _handleCalendarTap(CalendarTapDetails calendarTapDetails) {
-    if (calendarTapDetails.targetElement == CalendarElement.calendarCell) {
-      final tappedDate = calendarTapDetails.date!;
-      final appointment = _appointments.firstWhere(
-        (appointment) =>
-            appointment.startTime.year == tappedDate.year &&
-            appointment.startTime.month == tappedDate.month &&
-            appointment.startTime.day == tappedDate.day,
-        orElse: () => Appointment(
-          startTime: tappedDate,
-          endTime: tappedDate.add(Duration(hours: 1)),
-          subject: 'No events',
-        ),
-      );
-
-      setState(() {
-        _selectedAppointment = appointment;
-      });
-
-      if (_selectedAppointment != null) {
-        _showEventDetailsDialog(context, _selectedAppointment!);
-      }
-    }
+void _handleCalendarTap(CalendarTapDetails calendarTapDetails) {
+  // Set _selectedDateTime to the date tapped on the calendar.
+  if (calendarTapDetails.targetElement == CalendarElement.calendarCell ||
+      calendarTapDetails.targetElement == CalendarElement.appointment) {
+    setState(() {
+      _selectedDateTime = calendarTapDetails.date!;
+    });
   }
+
+  // If an appointment is tapped, show its details
+  if (calendarTapDetails.appointments != null && calendarTapDetails.appointments!.isNotEmpty) {
+    final Appointment tappedAppointment = calendarTapDetails.appointments!.first;
+
+    _showEventDetailsDialog(context, tappedAppointment);
+  }
+}
+
 
   void _showEventDetailsDialog(BuildContext context, Appointment appointment) {
     showDialog(
