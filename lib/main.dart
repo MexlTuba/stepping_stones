@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stepping_stones/screens/onboarding_screen.dart';
+import 'package:stepping_stones/screens/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
       home: SafeArea(
         child: Scaffold(
           body: Center(
-            child: OnboardingScreen(),
+            child: HomePage(),
           ),
         ),
       ),
