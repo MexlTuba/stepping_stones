@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:stepping_stones/widgets/bottom_navbar.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,7 +40,8 @@ class _CalendarPageState extends State<CalendarPage> {
         onPressed: _showAddEventDialog,
         tooltip: 'Add Event',
         foregroundColor: Colors.white, // Set FAB's foreground color to white
-        backgroundColor: const Color(0xFF3DCCC7), // Set FAB's background color to 3DCCC7
+        backgroundColor:
+            const Color(0xFF3DCCC7), // Set FAB's background color to 3DCCC7
         child: Icon(Icons.add),
       ),
       body: SfCalendar(
@@ -62,14 +64,14 @@ class _CalendarPageState extends State<CalendarPage> {
         dataSource: MeetingDataSource(_appointments),
         onTap: _handleCalendarTap,
       ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
+      // bottomNavigationBar: BottomNavBar(
+      //   selectedIndex: _selectedIndex,
+      //   onItemTapped: (index) {
+      //     setState(() {
+      //       _selectedIndex = index;
+      //     });
+      //   },
+      // ),
     );
   }
 
@@ -78,7 +80,9 @@ class _CalendarPageState extends State<CalendarPage> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white, // Set dialog background color to white
-        title: Text('Add Event', style: TextStyle(color: const Color(0xFF404345))), // Set title text color
+        title: Text('Add Event',
+            style: TextStyle(
+                color: const Color(0xFF404345))), // Set title text color
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -88,22 +92,28 @@ class _CalendarPageState extends State<CalendarPage> {
                 decoration: InputDecoration(
                   labelText: 'Event Title',
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: const Color(0xFF3DCCC7)), // Set underline color when focused
+                    borderSide: BorderSide(
+                        color: const Color(
+                            0xFF3DCCC7)), // Set underline color when focused
                   ),
-                  labelStyle: TextStyle(color: const Color(0xFF404345)), // Set label text color
+                  labelStyle: TextStyle(
+                      color: const Color(0xFF404345)), // Set label text color
                 ),
                 cursorColor: const Color(0xFF3DCCC7), // Set caret color
-                style: TextStyle(color: const Color(0xFF404345)), // Set text color
+                style:
+                    TextStyle(color: const Color(0xFF404345)), // Set text color
               ),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _pickDateTime,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3DCCC7), // Set button background color
+                  backgroundColor:
+                      const Color(0xFF3DCCC7), // Set button background color
                 ),
                 child: Text(
                   'Pick Date and Time',
-                  style: TextStyle(color: Colors.white), // Set button text color to white
+                  style: TextStyle(
+                      color: Colors.white), // Set button text color to white
                 ),
               ),
             ],
@@ -114,7 +124,9 @@ class _CalendarPageState extends State<CalendarPage> {
             onPressed: () {
               Navigator.of(context).pop(null);
             },
-            child: Text('Cancel', style: TextStyle(color: const Color(0xFF404345))), // Set button text color
+            child: Text('Cancel',
+                style: TextStyle(
+                    color: const Color(0xFF404345))), // Set button text color
           ),
           ElevatedButton(
             onPressed: () {
@@ -125,9 +137,11 @@ class _CalendarPageState extends State<CalendarPage> {
               );
               Navigator.of(context).pop(newAppointment);
             },
-            child: Text('Save', style: TextStyle(color: Colors.white)), // Set button text color
+            child: Text('Save',
+                style: TextStyle(color: Colors.white)), // Set button text color
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF3DCCC7), // Set button background color
+              backgroundColor:
+                  const Color(0xFF3DCCC7), // Set button background color
             ),
           ),
         ],
@@ -199,16 +213,26 @@ class _CalendarPageState extends State<CalendarPage> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white, // Set dialog background color to white
-        title: Text('Event Details', style: TextStyle(color: const Color(0xFF404345))), // Set title text color
+        title: Text('Event Details',
+            style: TextStyle(
+                color: const Color(0xFF404345))), // Set title text color
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Date: ${DateFormat('MMM dd, yyyy').format(appointment.startTime)}', style: TextStyle(color: const Color(0xFF404345))), // Set text color
-              Text('Time: ${DateFormat('hh:mm a').format(appointment.startTime)} - ${DateFormat('hh:mm a').format(appointment.endTime)}', style: TextStyle(color: const Color(0xFF404345))), // Set text color
+              Text(
+                  'Date: ${DateFormat('MMM dd, yyyy').format(appointment.startTime)}',
+                  style: TextStyle(
+                      color: const Color(0xFF404345))), // Set text color
+              Text(
+                  'Time: ${DateFormat('hh:mm a').format(appointment.startTime)} - ${DateFormat('hh:mm a').format(appointment.endTime)}',
+                  style: TextStyle(
+                      color: const Color(0xFF404345))), // Set text color
               SizedBox(height: 8),
-              Text('Event: ${appointment.subject}', style: TextStyle(color: const Color(0xFF404345))), // Set text color
+              Text('Event: ${appointment.subject}',
+                  style: TextStyle(
+                      color: const Color(0xFF404345))), // Set text color
             ],
           ),
         ),
@@ -217,7 +241,9 @@ class _CalendarPageState extends State<CalendarPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Close', style: TextStyle(color: const Color(0xFF404345))), // Set button text color
+            child: Text('Close',
+                style: TextStyle(
+                    color: const Color(0xFF404345))), // Set button text color
           ),
           ElevatedButton(
             onPressed: () {
@@ -227,9 +253,11 @@ class _CalendarPageState extends State<CalendarPage> {
               Navigator.pop(context); // Close the dialog
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF3DCCC7), // Set button background color
+              backgroundColor:
+                  const Color(0xFF3DCCC7), // Set button background color
             ),
-            child: Text('Delete', style: TextStyle(color: Colors.white)), // Set button text color
+            child: Text('Delete',
+                style: TextStyle(color: Colors.white)), // Set button text color
           ),
         ],
       ),
@@ -243,65 +271,65 @@ class MeetingDataSource extends CalendarDataSource {
   }
 }
 
-class BottomNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
+// class BottomNavBar extends StatelessWidget {
+//   final int selectedIndex;
+//   final Function(int) onItemTapped;
 
-  const BottomNavBar({
-    super.key,
-    required this.selectedIndex,
-    required this.onItemTapped,
-  });
+//   const BottomNavBar({
+//     super.key,
+//     required this.selectedIndex,
+//     required this.onItemTapped,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    final navBarIcons = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Center(
-          child: selectedIndex == 0
-              ? Image.asset('assets/icons/homeSelected.png', width: 24)
-              : Image.asset('assets/icons/homeUnselected.png', width: 24),
-        ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: Center(
-          child: selectedIndex == 1
-              ? Image.asset('assets/icons/calendarSelected.png', width: 24)
-              : Image.asset('assets/icons/calendarUnselected.png', width: 24),
-        ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: Center(
-          child: selectedIndex == 2
-              ? Image.asset('assets/icons/notificationSelected.png', width: 24)
-              : Image.asset('assets/icons/notificationUnselected.png', width: 24),
-        ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: Center(
-          child: selectedIndex == 3
-              ? Image.asset('assets/icons/userSelected.png', width: 24)
-              : Image.asset('assets/icons/userUnselected.png', width: 24),
-        ),
-        label: '',
-      ),
-    ];
+//   @override
+//   Widget build(BuildContext context) {
+//     final navBarIcons = <BottomNavigationBarItem>[
+//       BottomNavigationBarItem(
+//         icon: Center(
+//           child: selectedIndex == 0
+//               ? Image.asset('assets/icons/homeSelected.png', width: 24)
+//               : Image.asset('assets/icons/homeUnselected.png', width: 24),
+//         ),
+//         label: '',
+//       ),
+//       BottomNavigationBarItem(
+//         icon: Center(
+//           child: selectedIndex == 1
+//               ? Image.asset('assets/icons/calendarSelected.png', width: 24)
+//               : Image.asset('assets/icons/calendarUnselected.png', width: 24),
+//         ),
+//         label: '',
+//       ),
+//       BottomNavigationBarItem(
+//         icon: Center(
+//           child: selectedIndex == 2
+//               ? Image.asset('assets/icons/notificationSelected.png', width: 24)
+//               : Image.asset('assets/icons/notificationUnselected.png', width: 24),
+//         ),
+//         label: '',
+//       ),
+//       BottomNavigationBarItem(
+//         icon: Center(
+//           child: selectedIndex == 3
+//               ? Image.asset('assets/icons/userSelected.png', width: 24)
+//               : Image.asset('assets/icons/userUnselected.png', width: 24),
+//         ),
+//         label: '',
+//       ),
+//     ];
 
-    return SizedBox(
-      height: 75,
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        elevation: 1.5,
-        backgroundColor: const Color(0xFFFFFFFF),
-        items: navBarIcons,
-        currentIndex: selectedIndex,
-        onTap: onItemTapped,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-      ),
-    );
-  }
-}
+//     return SizedBox(
+//       height: 75,
+//       child: BottomNavigationBar(
+//         type: BottomNavigationBarType.fixed,
+//         elevation: 1.5,
+//         backgroundColor: const Color(0xFFFFFFFF),
+//         items: navBarIcons,
+//         currentIndex: selectedIndex,
+//         onTap: onItemTapped,
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//       ),
+//     );
+//   }
+// }
