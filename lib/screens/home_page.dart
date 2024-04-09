@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stepping_stones/models/patients.dart';
+import 'package:stepping_stones/screens/calendar_page.dart';
 import 'package:stepping_stones/screens/home_screen.dart';
 import 'package:stepping_stones/widgets/bottom_navbar.dart';
 
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           index: _selectedIndex,
           children: <Widget>[
             HomeScreen(patientList: patientList),
-            Text('Calendar Screen'),
+            CalendarPage(),
             Text('Notification Screen'),
             Text('Profile Screen'),
           ],

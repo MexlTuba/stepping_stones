@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts package
 import 'package:stepping_stones/models/patients.dart';
 import 'package:stepping_stones/screens/calendar_page.dart';
+import 'package:stepping_stones/screens/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -20,7 +21,7 @@ class MainApp extends StatelessWidget {
       home: SafeArea(
         child: Scaffold(
           body: Center(
-            child: CalendarPage(),
+            child: HomePage(),
           ),
         ),
       ),
