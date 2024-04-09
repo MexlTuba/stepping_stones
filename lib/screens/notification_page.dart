@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
 }
 
 class NotificationsPage extends StatelessWidget {
-  int _selectedIndex = 2;
   final List<Map<String, dynamic>> notifications = [
     {
       'title': 'Appointment Reminder',
@@ -55,8 +54,13 @@ class NotificationsPage extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              leading: CircleAvatar(
-                child: Text('P${index + 1}'), 
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Image.asset('assets/icons/notificationUnselected.png', fit: BoxFit.cover),
               ),
               title: Text(notifications[index]['title']),
               subtitle: Text(notifications[index]['body']),
