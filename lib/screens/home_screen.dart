@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:stepping_stones/models/patients.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final List<Patient> patientList;
   const HomeScreen({
-    super.key,
+    Key? key,
     required this.patientList,
-  });
+  }) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // State variables
+  List<Patient> _filteredPatients = [];
+  String _searchText = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredPatients = widget.patientList;
+  }
+
+  void _updateSearchResults(String text) {
+    setState(() {
+      _searchText = text;
+      if (text.isEmpty) {
+        _filteredPatients = widget.patientList;
+      } else {
+        _filteredPatients = widget.patientList
+            .where((patient) =>
+                patient.fname.toLowerCase().contains(text.toLowerCase()) ||
+                patient.lname.toLowerCase().contains(text.toLowerCase()))
+            .toList();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +103,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(16.0),
                 child: TextFormField(
+                  onChanged: _updateSearchResults,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(5),
                     hintText: 'Search patient',
@@ -87,7 +118,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              //end of search
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -114,9 +144,9 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: 20),
                         Expanded(
                           child: ListView.builder(
-                            itemCount: patientList.length,
+                            itemCount: _filteredPatients.length,
                             itemBuilder: (context, index) {
-                              final patient = patientList[index];
+                              final patient = _filteredPatients[index];
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Card(
@@ -124,13 +154,43 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: ListTile(
-                                    leading:
-                                        Icon(Icons.account_circle, size: 50),
-                                    title: Text(
-                                        patient.fname + ' ' + patient.lname),
-                                    subtitle: Text(patient.disease +
-                                        '  ·  ' +
-                                        patient.hospital),
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        patient.patientImage,
+                                        width: 60,
+                                        height: 60,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    title: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text:
+                                                '${patient.fname} ${patient.lname}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    subtitle: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text:
+                                                '${patient.disease}  ·  ${patient.hospital}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     trailing: ElevatedButton(
                                       onPressed: () {},
                                       child: Text(
