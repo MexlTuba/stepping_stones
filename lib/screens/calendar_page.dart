@@ -33,7 +33,7 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: Text('Appointments'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddEventDialog,
