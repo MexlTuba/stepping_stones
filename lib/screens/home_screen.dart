@@ -87,7 +87,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              //end of search
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -124,13 +123,43 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: ListTile(
-                                    leading:
-                                        Icon(Icons.account_circle, size: 50),
-                                    title: Text(
-                                        patient.fname + ' ' + patient.lname),
-                                    subtitle: Text(patient.disease +
-                                        '  ·  ' +
-                                        patient.hospital),
+                                    leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        patient.patientImage,
+                                        width: 60,
+                                        height: 60,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    title: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text:
+                                                '${patient.fname} ${patient.lname}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    subtitle: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text:
+                                                '${patient.disease}  ·  ${patient.hospital}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                                color: Color(0xFFAAAAAA)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                     trailing: ElevatedButton(
                                       onPressed: () {},
                                       child: Text(
