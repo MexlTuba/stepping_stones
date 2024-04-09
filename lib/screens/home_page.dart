@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stepping_stones/screens/onboarding_screen.dart';
+import 'package:stepping_stones/models/patients.dart';
+import 'package:stepping_stones/screens/home_screen.dart';
 import 'package:stepping_stones/widgets/bottom_navbar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
+  HomePage({
+    Key? key,
+  }) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -29,8 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: IndexedStack(
           index: _selectedIndex,
           children: <Widget>[
-            OnboardingScreen(),
-            // Replace with actual screens corresponding to the tabs
+            HomeScreen(patientList: patientList),
             Text('Calendar Screen'),
             Text('Notification Screen'),
             Text('Profile Screen'),
