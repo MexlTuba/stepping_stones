@@ -33,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
       BottomNavigationBarItem(
         icon: Center(
           child: selectedIndex == 2
-              ? Image.asset('assets/icons/notificationSelected.png', width: 24)
+              ? Image.asset('assets/icons/notificationsSelected.png', width: 24)
               : Image.asset('assets/icons/notificationUnselected.png', width: 24),
         ),
         label: '',
@@ -54,7 +54,7 @@ class BottomNavBar extends StatelessWidget {
           height: 75,
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            elevation: 8, // Adjust the elevation here
+            elevation: 0, // Adjust the elevation here
             backgroundColor: AppStyles.colorScheme.primary,
             items: navBarIcons,
             currentIndex: selectedIndex,
@@ -68,14 +68,14 @@ class BottomNavBar extends StatelessWidget {
           left: 0,
           right: 0,
           child: Container(
-            height: 5,
+            height: 3,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 1,
+                  spreadRadius: 0.1,
                   blurRadius: 5,
-                  offset: Offset(0, 3),
+                  offset: Offset(0, 2),
                 ),
               ],
             ),
