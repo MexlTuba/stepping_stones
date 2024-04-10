@@ -21,15 +21,15 @@ var patientList = [
       patientImage: 'assets/images/patient1.jpg',
       fname: 'Noraa',
       lname: 'Ojenroc',
-      disease: 'COVID-19',
+      disease: 'Stroke',
       hospital: 'Chong Hua Hospital',
       notes:
-          'This patient is exhibiting extreme symptoms of coronavirus, recovery is not looking well.'),
+          'Patient Complaint: Sharp pain in right lower abdomen for the past 3 days, worsening with coughing and movement. \n\n · Problem List: Acute lower abdominal pain '),
   Patient(
       patientImage: 'assets/images/patient2.jpg',
       fname: 'Liam',
       lname: 'Smith',
-      disease: 'Asthma',
+      disease: 'Amputee',
       hospital: 'St. Luke\'s Medical Center',
       notes:
           'Patient requires regular nebulization and monitoring of respiratory function.'),
@@ -37,7 +37,7 @@ var patientList = [
       patientImage: 'assets/images/patient3.jpg',
       fname: 'Olivia',
       lname: 'Johnson',
-      disease: 'Hypertension',
+      disease: 'Spinal Injury',
       hospital: 'Mount Sinai Hospital',
       notes:
           'Blood pressure management is critical, diet and medication adherence must be monitored.'),
@@ -45,7 +45,7 @@ var patientList = [
       patientImage: 'assets/images/patient4.jpg',
       fname: 'Noah',
       lname: 'Williams',
-      disease: 'Diabetes',
+      disease: 'Brain Injury',
       hospital: 'Cleveland Clinic',
       notes:
           'Patient needs insulin therapy adjustment and frequent blood sugar checks.'),
@@ -61,7 +61,7 @@ var patientList = [
       patientImage: 'assets/images/patient6.jpg',
       fname: 'Ava',
       lname: 'Jones',
-      disease: 'Anemia',
+      disease: 'Arthritis',
       hospital: 'Johns Hopkins Hospital',
       notes:
           'Patient is on iron supplements, progress towards normal levels needs to be tracked.'),

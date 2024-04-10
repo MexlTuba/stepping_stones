@@ -62,14 +62,14 @@ class PatientDetailScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    'Care giver notes:',
+                    'Patient Chart:',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: Text(
-                    patient.notes,
+                    ' · ' + patient.notes,
                   ),
                 ),
                 Divider(),
@@ -82,7 +82,7 @@ class PatientDetailScreen extends StatelessWidget {
                   },
                   child: ListTile(
                     leading: Icon(Icons.list),
-                    title: Text('To-do list'),
+                    title: Text('View Chart Details'),
                   ),
                 ),
                 ListTile(

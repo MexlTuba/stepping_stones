@@ -28,7 +28,7 @@ class ToDoListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Caregiver To-Do List'),
+        title: Text('Patient Chart Details'),
         backgroundColor: Color(0xFF3DCCC7), // Custom teal color
       ),
       body: ListView.builder(
@@ -41,6 +41,7 @@ class ToDoListScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(
+              tileColor: Colors.white,
               leading: Checkbox(
                 value: task['completed'],
                 onChanged: null, // This makes the checkbox display-only
