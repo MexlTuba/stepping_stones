@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: 22,
                               color: Color(0xFF484C52)),
                         ),
-                        SizedBox(height: 20),
+                        // SizedBox(height: 20),
                         Expanded(
                           child: ListView.builder(
                             itemCount: _filteredPatients.length,

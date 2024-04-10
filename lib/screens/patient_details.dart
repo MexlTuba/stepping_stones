@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:stepping_stones/models/patients.dart';
+import 'package:stepping_stones/screens/health_record.dart';
+import 'package:stepping_stones/screens/todo_list.dart';
 
 class PatientDetailScreen extends StatelessWidget {
   const PatientDetailScreen({
@@ -71,13 +73,29 @@ class PatientDetailScreen extends StatelessWidget {
                   ),
                 ),
                 Divider(),
-                ListTile(
-                  leading: Icon(Icons.list),
-                  title: Text('To-do list'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ToDoListScreen()),
+                    );
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.list),
+                    title: Text('To-do list'),
+                  ),
                 ),
                 ListTile(
                   leading: Icon(Icons.health_and_safety),
-                  title: Text('View health record'),
+                  title: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HealthRecord()),
+                        );
+                      },
+                      child: Text('View health record')),
                 ),
               ],
             ),
